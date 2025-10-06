@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot by Rehan</title>
+
+    <!-- ✅ Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="w-full max-w-2xl bg-white shadow-lg rounded-lg p-6">
+        <h1 class="text-2xl font-bold text-center mb-4 text-blue-600">Chatbot by Rehan</h1>
+
+        <form method="POST" class="flex flex-col space-y-4">
+            {% csrf_token %}
+            <input 
+                type="text" 
+                name="prompt" 
+                placeholder="Type your message..." 
+                class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+            >
+            <button 
+                type="submit" 
+                class="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
+                Send
+            </button>
+        </form>
+
+        {% if response %}
+            <div class="mt-6 p-4 bg-gray-100 border border-gray-200 rounded-lg">
+                <p class="text-gray-800"><strong>Response:</strong></p>
+                <p class="text-gray-700 mt-1">{{ response | safe}}</p>
+            </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
